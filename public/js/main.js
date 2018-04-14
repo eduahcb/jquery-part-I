@@ -17,3 +17,18 @@ $('.campo-digitacao').on("input", ()=>{
     $('#contador-palavras').text(qtde_palavras);
 
 });
+
+let tempo = $("#tempo").text();
+
+$('.campo-digitacao').one("focus", function(){
+    let cronometroID = setInterval(()=>{
+        tempo--;
+        $("#tempo").text(tempo);
+
+        if(tempo == 0){
+            $('.campo-digitacao').attr("disabled",true);
+            clearInterval(cronometroID);
+        }
+    },1000);
+
+});
