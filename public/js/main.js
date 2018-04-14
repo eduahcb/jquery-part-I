@@ -3,6 +3,8 @@ $(function(){
     iniciaContadores();
     iniciaCronometro();
     iniciaVerifica();
+
+    $(".botao-remover").on("click", removeLinha)
 });
 
 let tempoInicial = $("#tempo").text();
@@ -38,13 +40,18 @@ function iniciaCronometro() {
             if (tempo == 0) {
                 $('.campo-digitacao').attr("disabled", true);
                 clearInterval(cronometroID);
-                $('#btn-reinicia').attr("disabled", false);
-                $('.campo-digitacao').toggleClass("campo-desativado");
                 $('.campo-digitacao').removeClass("borda-verde");
                 $('.campo-digitacao').removeClass("borda-vermelha");
+                finalizaJogo();
             }
         }, 1000);
     });
+}
+
+function finalizaJogo(){
+    $('#btn-reinicia').attr("disabled", false);
+    $('.campo-digitacao').toggleClass("campo-desativado");
+    inserePlacar();
 }
 
 function reiniciaJogo() {
